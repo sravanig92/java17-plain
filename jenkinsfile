@@ -4,8 +4,5 @@ node('jdk17-mvn3.9.1') {
     stage('build') {
         sh 'mvn clean package'
      }
-     stage('archive') {
-         archiv 'target/*.jar'
-     }
 }
 }
