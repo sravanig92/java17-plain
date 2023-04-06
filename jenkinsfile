@@ -1,4 +1,5 @@
 node('jdk17-mvn3.9.1') {
+   properties([pipelineTriggers([upstream('staterproject')])])
     stage('git') {
     git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'
     stage('build') {
