@@ -2,7 +2,13 @@ node('jdk17-mvn3.9.1') {
     stage('git') {
     git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'
     stage('build') {
-        sh 'mvn clean package'
+        sh'''
+        echo "PATH=${PATH}"
+        cho "M2_HOME=${M2_HOME}"
+
+
+        '''
+        sh '/usr/local/apache-maven-3.9.1/binmvn clean package'
      }
 }
 }
