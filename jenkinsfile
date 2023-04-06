@@ -1,15 +1,18 @@
 pipeline {
     agent {label 'jdk17-mvn3.9.1'}
-    triggers { upstream(upstreamProjects: 'staterproject', threshold: hudson.model.Result.SUCCESS) }
+    parameters {
+        string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'This is maven goal' )
+        choice(name: 'BRANCH_TO_BUILD', choices: ['declarative', 'main', 'scripted'], description: 'Branch to build')
+    }
     stages {
         stage('scm') {
             steps {
-             git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'   
+             git url: 'https://github.com/sravanig92/java17-plain.git', branch: "${params.BRANCH_TO_BUILD}" 
             }
         }
         stage('build') {
             steps {
-                sh '/usr/local/apache-maven-3.9.1/bin/mvn clean package'
+                sh "/usr/local/apache-maven-3.9.1/bin/mvn ${params.MAVEN_GOAL}"
             }
         }
     }
