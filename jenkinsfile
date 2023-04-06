@@ -10,5 +10,8 @@ node('jdk17-mvn3.9.1') {
         '''
         sh '/usr/local/apache-maven-3.9.1/bin/mvn clean package'
      }
+     stage('archive') {
+        archive 'target/*.jar'
+     }
 }
 }
