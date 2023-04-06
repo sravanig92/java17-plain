@@ -3,7 +3,7 @@ pipeline {
    triggers {upstream(upstreamprojects: 'starterproject',threshold: hudson.model.Result.SUCCESS)}
 }
 stags{
-   stag('scm') {
+   stage('scm') {
       steps {
          git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'
 
