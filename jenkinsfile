@@ -1,7 +1,7 @@
 node('jdk17-mvn3.9.1') {
-   properties([pipelineTriggers([upstream('staterproject')])])
+   propertis([parameters([choice(choices: ['scripted', 'master', 'declarative'], description: 'branch to be built', name: 'BRANCH_TO_BUILD')])])
     stage('git') {
-    git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'
+    git url: 'https://github.com/GitPracticeRepo/java11-examples.git', branch: "${params.BRANCH_TO_BUILD}"
     stage('build') {
         sh'''
         echo "PATH=${PATH}"
