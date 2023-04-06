@@ -1,7 +1,7 @@
 pipeline {
     agent {label 'jdk17-mvn3.9.1'}
     triggers { upstream(upstreamProjects: 'staterproject', threshold: hudson.model.Result.SUCCESS) }
-    stags {
+    stages {
         stage('scm') {
             steps {
              git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'   
