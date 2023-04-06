@@ -4,7 +4,7 @@ node('jdk17-mvn3.9.1') {
     stage('build') {
         sh'''
         echo "PATH=${PATH}"
-        cho "M2_HOME=${M2_HOME}"
+        echo "M2_HOME=${M2_HOME}"
 
 
         '''
