@@ -1,18 +1,16 @@
-pipeline { 
-   agent { label'jdk17-mvn3.9.1' }
-   triggers { upstream(upstreamprojects: 'staterproject', threshold: hudson.model.Result.SUCCESS)}
-}
-stags{
-   stage ('scm') {
-      steps {
-         git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'
-
-      }
-   }
-   stage ('build') {
-      steps {
-         sh '/usr/local/apache-maven-3.9.1/bin/mvn clean package'
-
-      }
-   }
+pipeline {
+    agent {label 'jdk17-mvn3.9.1'}
+    triggers { upstream(upstreamProjects: 'staterproject', threshold: hudson.model.Result.SUCCESS) }
+    stags {
+        stage('scm') {
+            steps {
+             git branch: 'main', url: 'https://github.com/sravanig92/java17-plain.git'   
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'usr/local/apache-maven-3.9.1/bin/mvn clean package'
+            }
+        }
+    }
 }
